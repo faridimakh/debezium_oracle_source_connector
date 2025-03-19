@@ -1,0 +1,192 @@
+{
+	"info": {
+		"_postman_id": "e90da512-efe0-4bb8-a868-fce966f3f70e",
+		"name": "connect",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "delete_connector",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8083/connectors/SimpleOracleCDC3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connectors",
+						"SimpleOracleCDC3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list_connectors",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"SimpleOracleCDC3\",\n    \"config\":{\n      \"connector.class\": \"io.confluent.connect.oracle.cdc.OracleCdcSourceConnector\",\n      \"name\": \"SimpleOracleCDC3\",\n      \"tasks.max\":1,\n      \"key.converter\": \"io.confluent.connect.avro.AvroConverter\",\n      \"key.converter.schema.registry.url\": \"http://schema-registry:8081\",\n      \"value.converter\": \"io.confluent.connect.avro.AvroConverter\",\n      \"value.converter.schema.registry.url\": \"http://schema-registry:8081\",\n      \"confluent.topic.bootstrap.servers\":\"kafka:29092\",\n      \"oracle.server\": \"oracle\",\n      \"oracle.port\": 1521,\n      \"oracle.sid\":\"ORCLCDB\",\n      \"oracle.username\": \"C##MYUSER\",\n      \"oracle.password\": \"password\",\n      \"start.from\":\"snapshot\",\n      \"table.inclusion.regex\": \".*\",\n      \"table.exclusion.regex\":\"\",\n      \"table.topic.name.template\": \"${fullyQualifiedTableName}\",\n      \"connection.pool.max.size\": 20,\n      \"confluent.topic.replication.factor\":1,\n      \"redo.log.consumer.bootstrap.servers\":\"kafka:29092\",\n      \"topic.creation.groups\": \"redo\",\n      \"topic.creation.redo.include\": \"redo-log-topic\",\n      \"topic.creation.redo.replication.factor\": 1,\n      \"topic.creation.redo.partitions\": 1,\n      \"topic.creation.redo.cleanup.policy\": \"delete\",\n      \"topic.creation.redo.retention.ms\": 1209600000,\n      \"topic.creation.default.replication.factor\": 1,\n      \"topic.creation.default.partitions\": 1,\n      \"topic.creation.default.cleanup.policy\": \"delete\"\n    }\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/connectors/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connectors",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"SimpleOracleCDC4\",\n    \"config\":{\n      \"connector.class\": \"io.confluent.connect.oracle.cdc.OracleCdcSourceConnector\",\n      \"name\": \"SimpleOracleCDC4\",\n      \"tasks.max\":1,\n      \"key.converter\": \"io.confluent.connect.avro.AvroConverter\",\n      \"key.converter.schema.registry.url\": \"http://schema-registry:8081\",\n      \"value.converter\": \"io.confluent.connect.avro.AvroConverter\",\n      \"value.converter.schema.registry.url\": \"http://schema-registry:8081\",\n      \"confluent.topic.bootstrap.servers\":\"kafka:29092\",\n      \"oracle.server\": \"oracle\",\n      \"oracle.port\": 1521,\n      \"oracle.sid\":\"ORCLCDB\",\n      \"oracle.username\": \"C##MYUSER\",\n      \"oracle.password\": \"password\",\n      \"start.from\":\"snapshot\",\n      \"table.inclusion.regex\":\".*\",\n      \"table.exclusion.regex\":\"\",\n      \"table.topic.name.template\": \"${fullyQualifiedTableName}\",\n      \"connection.pool.max.size\": 20,\n      \"confluent.topic.replication.factor\":1,\n      \"redo.log.consumer.bootstrap.servers\":\"kafka:29092\",\n      \"topic.creation.groups\": \"redo\",\n      \"topic.creation.redo.include\": \"redo-log-topic\",\n      \"topic.creation.redo.replication.factor\": 1,\n      \"topic.creation.redo.partitions\": 1,\n      \"topic.creation.redo.cleanup.policy\": \"delete\",\n      \"topic.creation.redo.retention.ms\": 1209600000,\n      \"topic.creation.default.replication.factor\": 1,\n      \"topic.creation.default.partitions\": 1,\n      \"topic.creation.default.cleanup.policy\": \"delete\"\n    }\n  }"
+				},
+				"url": {
+					"raw": "http://localhost:8083/connectors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connectors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "status",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"connector_name\", \"SimpleOracleCDC\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/connectors/{{connector_name}}/status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connectors",
+						"{{connector_name}}",
+						"status"
+					],
+					"query": [
+						{
+							"key": "connector_name",
+							"value": "SimpleOracleCDC",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "restart",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "resume",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "stop",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "pause",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
