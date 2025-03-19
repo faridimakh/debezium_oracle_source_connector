@@ -16,9 +16,10 @@ INSERT INTO CUSTOMERS VALUES (NULL, 'Peter', 'Parker', 'peter.parker@marvel.com'
 INSERT INTO CUSTOMERS VALUES (NULL, 'Peter1', 'Parker1', 'peter.parker@marvel.com1');
 INSERT INTO CUSTOMERS VALUES (NULL, 'Peter2', 'Parker2', 'peter.parker@marvel.com2');
 INSERT INTO CUSTOMERS VALUES (NULL, 'Peter3', 'Parker3', 'peter.parker@marvel.com3');
+INSERT INTO CUSTOMERS VALUES (NULL, 'Peter4', 'Parker4', 'peter.parker@marvel.com4');
 ------------------------------------------------------------------------------------------
 --update rows
-UPDATE CUSTOMERS SET email = 'new_email@gmail.com' WHERE id = 1041;
+UPDATE CUSTOMERS SET email = 'new_email@gmail.com' WHERE id = 1063;
 DELETE FROM CUSTOMERS WHERE id = 1023;
 ------------------------------------------------------------------------------------------
 SELECT name, open_mode FROM v$pdbs;
